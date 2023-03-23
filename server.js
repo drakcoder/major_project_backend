@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/certificate", certificateRoute);
 
-app.listen(process.env.PORT || 3000, async () => {
+app.listen(process.env.PORT || 80, async () => {
   console.log("listening to port " + (process.env.PORT || 3000));
   await connect();
 });
