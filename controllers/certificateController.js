@@ -38,7 +38,7 @@ const addCertificate = async (req, res, next) => {
       date: new Date(),
       init_mined: true,
     };
-    await axios.post("http://localhost:8080/api/v1/addBlock", block);
+    await axios.post("http://chain.hackevolve.com/api/v1/addBlock", block);
     return res.status(201).send({
       result: true,
       certificate: certificate.toJSON(),
@@ -88,7 +88,7 @@ const updateCertificate = async (req, res, next) => {
       certificate_uid: uid,
       init_mined: certificate.mined,
     };
-    await axios.post("http://localhost:8080/api/v1/addBlock", block);
+    await axios.post("http://chain.hackevolve.com/api/v1/addBlock", block);
   }
   if (certificate.mined == false) {
     await certificate.save();
@@ -112,7 +112,7 @@ const mineBlock = async (req, res, next) => {
     nonce: nonce,
   };
   let response = await axios.post(
-    "http://localhost:8080/api/v1/mineBlock",
+    "http://chain.hackevolve.com/api/v1/mineBlock",
     reqBody
   );
   if (response.data.success) {
@@ -189,10 +189,10 @@ const getCertificate = async (req, res, next) => {
 const getblockDataForMining = async (req, res, next) => {
   let certificateId = req.params.id;
   let latestBlock = await axios.get(
-    "http://localhost:8080/api/v1/getLatestBlock"
+    "http://chain.hackevolve.com/api/v1/getLatestBlock"
   );
   let currBlock = await axios.get(
-    `http://localhost:8080/api/v1/getBlock/${certificateId}`
+    `http://chain.hackevolve.com/api/v1/getBlock/${certificateId}`
   );
   return res.status(200).send({
     lastBlock: latestBlock.data,
