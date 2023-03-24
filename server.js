@@ -13,9 +13,7 @@ dotenv.config();
 app.enable('trust proxy')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: ['https://certify-14.web.app', 'https://section.io']
-}));
+app.use(cors());
 app.use(cookieParser());
 
 app.use("/user", userRouter);
