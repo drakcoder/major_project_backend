@@ -6,14 +6,18 @@ const cookieParser = require("cookie-parser");
 const { connect } = require("./DB/connect");
 const userRouter = require("./routes/userRoute");
 const certificateRoute = require("./routes/certificateRoute");
+const { method } = require("lodash");
 
 const app = express();
 dotenv.config();
 
-app.enable('trust proxy')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: '*',
+  allowedHeaders: 'Content-Type'
+}));
 app.use(cookieParser());
 
 app.use("/user", userRouter);
