@@ -12,7 +12,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: true }));
+app.use(cors({ origin: ['https://certify-14.web.app'], credentials: true }));
 app.use(cookieParser());
 
 app.use("/user", userRouter);
