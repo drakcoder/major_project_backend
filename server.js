@@ -12,7 +12,9 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: 'https://www.section.io'
+}));
 app.use(cookieParser());
 
 app.use("/user", userRouter);
