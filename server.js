@@ -7,6 +7,7 @@ const { connect } = require("./DB/connect");
 const userRouter = require("./routes/userRoute");
 const certificateRoute = require("./routes/certificateRoute");
 const { method } = require("lodash");
+const https = require('https')
 
 const app = express();
 dotenv.config();
@@ -32,7 +33,8 @@ app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/certificate", certificateRoute);
 
-app.listen(process.env.PORT || 80, async () => {
-  console.log("listening to port " + (process.env.PORT || 3000));
-  await connect();
-});
+connect();
+
+https.createServer(app).listen(3000, () => {
+  console.log('server running on port 3000')
+})
