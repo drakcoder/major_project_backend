@@ -85,6 +85,7 @@ const signupController = async (req, res, next) => {
 
 const getUserController = async (req, res, next) => {
   try {
+    console.log("here");
     const { uid } = req.params;
     let userObj = await User.findOne({ uid: uid });
     if (userObj) {
