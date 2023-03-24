@@ -36,12 +36,16 @@ app.use("/certificate", certificateRoute);
 
 connect();
 
-https.createServer(
-  {
-    key: fs.readFileSync("key.pem"),
-    cert: fs.readFileSync("cert.pem"),
-  },
-  app
-).listen(3000, () => {
-  console.log('server running on port 3000')
+// https.createServer(
+//   {
+//     key: fs.readFileSync("key.pem"),
+//     cert: fs.readFileSync("cert.pem"),
+//   },
+//   app
+// ).listen(3000, () => {
+//   console.log('server running on port 3000')
+// })
+
+app.listen(3000, () => {
+  console.log('listening to port 3000');
 })
