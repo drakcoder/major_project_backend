@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const fs = require('fs')
 
 const { connect } = require("./DB/connect");
 const userRouter = require("./routes/userRoute");
@@ -35,6 +36,12 @@ app.use("/certificate", certificateRoute);
 
 connect();
 
-https.createServer(app).listen(3000, () => {
+https.createServer(
+  {
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem"),
+  },
+  app
+).listen(3000, () => {
   console.log('server running on port 3000')
 })
