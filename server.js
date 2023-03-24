@@ -10,10 +10,11 @@ const certificateRoute = require("./routes/certificateRoute");
 const app = express();
 dotenv.config();
 
+app.enable('trust proxy')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ['https://certify-14.web.app/', 'https://section.io']
+  origin: ['https://certify-14.web.app', 'https://section.io']
 }));
 app.use(cookieParser());
 
